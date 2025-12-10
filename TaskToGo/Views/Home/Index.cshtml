@@ -1,40 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
-@model List<TodoTask>
 
-@if (Model.Count > 0)
-{
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    Todo Name
-                </th>
-                <th>
-                    Deadline
-                </th>
+<div class="dashboard">
+    <div class="card">
+        <h3>Total Tasks</h3>
+        <p>@ViewData["TotalTasks"]</p>
+    </div>
 
-            </tr>
-        </thead>
-        <tbody>
+    <div class="card">
+        <h3>Pending Tasks</h3>
+        <p>@ViewData["PendingTasks"]</p>
+    </div>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Deadline</td>
-                    <td><a class="btn btn-primary">ViewDetails</a> </td>
-                    <td><a class="btn btn-warning">update</a> </td>
-                    <td><a class="btn btn-danager">Delete</a> </td>
+    <div class="card">
+        <h3>Total Categories</h3>
+        <p>@ViewData["TotalCategories"]</p>
+    </div>
+</div>
 
-
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <h3 class="alert alert-warning">No Tasks Yet</h3>
-}
+<style>
+    .dashboard {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .card {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        flex: 1;
+        min-width: 200px;
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+</style>
