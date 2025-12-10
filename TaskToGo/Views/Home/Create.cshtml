@@ -1,38 +1,41 @@
 ﻿@model TodoTask
 
-<div class="container mt-4">
-    <h2>Create Task</h2>
+<div class="container create-task-container py-5">
+    <div class="card shadow-lg p-4 mx-auto" style="max-width: 600px; border-radius: 20px; background: linear-gradient(135deg,#ede9fe,#f5f3ff);">
+        <h2 class="text-center mb-4" style="color:#7c3aed;">Create New Task</h2>
 
-    <form method="post" asp-controller="Home" asp-action="Create">
-        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" asp-controller="Home" asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label fw-bold">Task Name</label>
+                <input asp-for="Name" class="form-control form-control-lg" placeholder="Enter task name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
 
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <input asp-for="Description" class="form-control" />
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label fw-bold">Description</label>
+                <input asp-for="Description" class="form-control form-control-lg" placeholder="Enter description" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
 
-        <div class="mb-3">
-            <label asp-for="Deadline" class="form-label"></label>
-            <input asp-for="Deadline" type="datetime-local" class="form-control" />
-            <span asp-validation-for="Deadline" class="text-danger"></span>
-        </div>
+            <div class="mb-3">
+                <label asp-for="Deadline" class="form-label fw-bold">Deadline</label>
+                <input asp-for="Deadline" type="datetime-local" class="form-control form-control-lg" />
+                <span asp-validation-for="Deadline" class="text-danger"></span>
+            </div>
 
-        <div class="mb-3">
-            <label asp-for="TaskCategoryId" class="form-label">Category</label>
-            <select asp-for="TaskCategoryId" asp-items="ViewBag.CategoriesList" class="form-select">
-                <option value="">Choose option</option>
-                <option value="Intersting">Intersting</option>
-            </select>
-            <span asp-validation-for="TaskCategoryId" class="text-danger"></span>
-        </div>
+            <div class="mb-3">
+                <label asp-for="TaskCategoryId" class="form-label fw-bold">Category</label>
+                <select asp-for="TaskCategoryId" asp-items="ViewBag.CategoriesList" class="form-select form-select-lg">
+                    <option value="">Choose option</option>
+                </select>
+                <span asp-validation-for="TaskCategoryId" class="text-danger"></span>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Add Task</button>
-    </form>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-gradient-primary btn-lg px-5">Add Task</button>
+            </div>
+        </form>
+    </div>
 </div>

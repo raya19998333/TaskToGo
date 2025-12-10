@@ -84,10 +84,10 @@ namespace TaskToGo.Controllers
         }
         public IActionResult ViewTasks()
         {
-            // جلب جميع المهام مع الفئة المرتبطة بها
             var tasks = _db.todoTasks.Include(t => t.taskCategory).ToList();
-            return View(tasks);
+            return View(tasks); // يعيد ViewTasks.cshtml
         }
+
 
     }
 }

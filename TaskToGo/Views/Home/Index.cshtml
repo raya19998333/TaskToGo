@@ -1,44 +1,61 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-@model List<TodoTask>
+﻿@model List<TaskToGo.Models.TodoTask>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@if (Model.Count > 0)
-{
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    Todo Name
-                </th>
-                <th>
-                    Deadline
-                </th>
-                <th>
-                    Category Name
-                </th>
+<div class="row g-4">
+    @foreach (var task in Model)
+    {
+        <div class="col-md-4">
+            <div class="container noselect">
+                <div class="canvas">
+                    @for (int i = 1; i <= 9; i++)
+                    {
+                        <div class="tracker tr-@i"></div>
+                    }
 
-            </tr>
-        </thead>
-        <tbody>
+                    <div id="card">
+                        <div class="card-content">
+                            <div class="card-glare"></div>
+                            <div class="cyber-lines"><span></span><span></span><span></span><span></span></div>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Deadline</td>
-                    <td>@item.taskCategory?.Name</td>
-                    <td><a class="btn btn-primary" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">ViewDetails</a> </td>
-                    <td><a class="btn btn-warning" asp-action="Update" asp-controller="Home" asp-route-id="@item.Id">update</a> </td>
-                    <td><a class="btn btn-danger" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">Delete</a> </td>
+                            <div class="title">@task.Name</div>
+                            <div class="subtitle">
+                                <span>Deadline: @task.Deadline.ToString("dd/MM/yyyy")</span><br />
+                                <span class="highlight">@task.taskCategory?.Name</span>
+                            </div>
 
+                            <div class="glowing-elements">
+                                <div class="glow-1"></div>
+                                <div class="glow-2"></div>
+                                <div class="glow-3"></div>
+                            </div>
 
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <h3 class="alert alert-warning">No Tasks Yet</h3>
-}
+                            <div class="card-actions d-flex justify-content-center mt-3 gap-2">
+                                <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-primary" title="View">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+                                <a asp-action="Update" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-warning" title="Edit">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+
+                                <form asp-action="DeleteConfirmed" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@task.Id" />
+                                    <button type="submit" class="btn btn-sm btn-gradient-danger" title="Delete">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="card-particles">
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="corner-elements">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="scan-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

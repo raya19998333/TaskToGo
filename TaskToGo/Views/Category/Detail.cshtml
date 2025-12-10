@@ -1,13 +1,15 @@
 ﻿@model TaskCategory
 
-@if (Model is not null)
+@if (Model != null)
 {
-    <div class="container d-flex flex-column">
-        <h3>@Model.Name</h3>
-        <p>@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+    <div class="container py-5 d-flex justify-content-center">
+        <div class="card shadow-lg p-4" style="max-width: 500px; border-radius: 20px; background: linear-gradient(135deg,#ede9fe,#f5f3ff);">
+            <h3 class="text-center mb-3" style="color:#7c3aed;">@Model.Name</h3>
+            <p class="text-center text-muted">Created At: @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+        </div>
     </div>
 }
 else
 {
-    <h3 class="alert alert-warning">No Category Found</h3>
+    <h3 class="alert alert-warning text-center mt-5">No Category Found</h3>
 }
