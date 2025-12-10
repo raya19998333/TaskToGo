@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using TaskToGo.Context;
 using TaskToGo.Models;
 
 namespace TaskToGo.Controllers
 {
-
-
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -16,29 +13,24 @@ namespace TaskToGo.Controllers
         public HomeController(ApplicationDbContext db)
         {
             _db = db;
-
         }
 
         public IActionResult Index()
         {
-            // Eager Loading
             var tasks = _db.todoTasks.Include(w => w.taskCategory).ToList();
-
             return View(tasks);
         }
+
         public IActionResult Details(int id)
         {
             var todo = _db.todoTasks.Include(w => w.taskCategory).FirstOrDefault(t => t.Id == id);
+            if (todo == null) return NotFound();
             return View(todo);
-
         }
+
         public IActionResult Create()
         {
-            var cats = new SelectList(_db.TaskCategories, "Id", "Name");
-            //var cats = _db.TaskCategories.ToList();
-
-            ViewBag.CategoriesList = cats;
-
+            ViewBag.CategoriesList = new SelectList(_db.TaskCategories, "Id", "Name");
             return View();
         }
 
@@ -49,24 +41,22 @@ namespace TaskToGo.Controllers
             {
                 _db.todoTasks.Add(obj);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewTasks");
             }
 
-            var cats = new SelectList(_db.TaskCategories, "Id", "Name");
-            ViewBag.CategoriesList = cats;
-
+            ViewBag.CategoriesList = new SelectList(_db.TaskCategories, "Id", "Name");
             return View(obj);
         }
 
         public IActionResult Update(int id)
         {
             var todo = _db.todoTasks.Include(w => w.taskCategory).FirstOrDefault(t => t.Id == id);
-            var cats = new SelectList(_db.TaskCategories, "Id", "Name");
-            //var cats = _db.TaskCategories.ToList();
+            if (todo == null) return NotFound();
 
-            ViewBag.CategoriesList = cats;
+            ViewBag.CategoriesList = new SelectList(_db.TaskCategories, "Id", "Name");
             return View(todo);
         }
+
         [HttpPost]
         public IActionResult Update(TodoTask obj)
         {
@@ -74,20 +64,30 @@ namespace TaskToGo.Controllers
             {
                 _db.todoTasks.Update(obj);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewTasks");
             }
 
-            var cats = new SelectList(_db.TaskCategories, "Id", "Name");
-            ViewBag.CategoriesList = cats;
-
+            ViewBag.CategoriesList = new SelectList(_db.TaskCategories, "Id", "Name");
             return View(obj);
         }
+
         public IActionResult ViewTasks()
         {
             var tasks = _db.todoTasks.Include(t => t.taskCategory).ToList();
             return View(tasks); // يعيد ViewTasks.cshtml
         }
 
+        // ✅ حذف المهمة
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var task = _db.todoTasks.Find(id);
+            if (task == null) return NotFound();
 
+            _db.todoTasks.Remove(task);
+            _db.SaveChanges();
+
+            return RedirectToAction("ViewTasks");
+        }
     }
 }

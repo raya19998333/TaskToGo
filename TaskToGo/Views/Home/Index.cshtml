@@ -1,57 +1,67 @@
 ﻿@model List<TaskToGo.Models.TodoTask>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-<div class="row g-4">
+<link rel="stylesheet" href="~/css/style.css" />
+<div class="row g-4 justify-content-center">
     @foreach (var task in Model)
     {
+        <h1 class="display-6" style="text-align:center">Your Tasks</h1>
         <div class="col-md-4">
-            <div class="container noselect">
+            <div class="card-container">
                 <div class="canvas">
                     @for (int i = 1; i <= 9; i++)
                     {
                         <div class="tracker tr-@i"></div>
                     }
 
-                    <div id="card">
+                    <div class="card">
                         <div class="card-content">
                             <div class="card-glare"></div>
-                            <div class="cyber-lines"><span></span><span></span><span></span><span></span></div>
 
-                            <div class="title">@task.Name</div>
-                            <div class="subtitle">
-                                <span>Deadline: @task.Deadline.ToString("dd/MM/yyyy")</span><br />
-                                <span class="highlight">@task.taskCategory?.Name</span>
+                            <!-- العنوان -->
+                            <div class="title" style="font-size:28px; font-weight:700; text-align:center; color:#d8b4fe; margin-top:15px;">
+                                @task.Name
                             </div>
 
+                            <!-- الفئة/التصنيف -->
+                            <div class="category-tag" style="text-align:center; margin:10px 0;">
+                                <span style="background:#c084fc; color:white; padding:4px 12px; border-radius:12px; font-size:13px; font-weight:600;">
+                                    @task.taskCategory?.Name
+                                </span>
+                            </div>
+
+                            <!-- الوصف -->
+                            <div class="subtitle" style="font-size:16px; text-align:center; color:#e9d5ff; margin:10px 15px;">
+                                <!-- يمكن إضافة وصف إضافي هنا إذا أردت -->
+                            </div>
+
+                            <!-- تاريخ الاستحقاق -->
+                            <div class="deadline" style="text-align:center; font-size:14px; color:#f3e8ff; margin-bottom:15px;">
+                                Deadline: @task.Deadline.ToString("dd/MM/yyyy")
+                            </div>
+
+                            <!-- أزرار الإجراءات -->
+                            <div class="card-actions d-flex justify-content-center gap-2 mb-3">
+                                <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-primary">
+                                    <i class="bi bi-eye-fill"></i> View
+                                </a>
+                                <a asp-action="Update" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-warning">
+                                    <i class="bi bi-pencil-fill"></i> Edit
+                                </a>
+                                <form asp-action="DeleteConfirmed" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@task.Id" />
+                                    <button type="submit" class="btn btn-sm btn-gradient-danger">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- تأثير Glow خفيف عند Hover -->
                             <div class="glowing-elements">
                                 <div class="glow-1"></div>
                                 <div class="glow-2"></div>
                                 <div class="glow-3"></div>
                             </div>
 
-                            <div class="card-actions d-flex justify-content-center mt-3 gap-2">
-                                <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-primary" title="View">
-                                    <i class="bi bi-eye-fill"></i>
-                                </a>
-                                <a asp-action="Update" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-warning" title="Edit">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </a>
-
-                                <form asp-action="DeleteConfirmed" method="post" style="display:inline;">
-                                    <input type="hidden" name="id" value="@task.Id" />
-                                    <button type="submit" class="btn btn-sm btn-gradient-danger" title="Delete">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </form>
-                            </div>
-
-                            <div class="card-particles">
-                                <span></span><span></span><span></span><span></span><span></span><span></span>
-                            </div>
-                            <div class="corner-elements">
-                                <span></span><span></span><span></span><span></span>
-                            </div>
-                            <div class="scan-line"></div>
                         </div>
                     </div>
                 </div>

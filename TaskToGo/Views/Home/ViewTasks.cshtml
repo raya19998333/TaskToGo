@@ -1,76 +1,37 @@
 ﻿@model List<TaskToGo.Models.TodoTask>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-<div class="row g-4">
+<link rel="stylesheet" href="~/css/style.css" />
+<div class="row g-4 justify-content-center">
     @foreach (var task in Model)
     {
         <div class="col-md-4">
-            <div class="container noselect">
-                <div class="canvas">
-                    @for (int i = 1; i <= 9; i++)
-                    {
-                        <div class="tracker tr-@i"></div>
-                    }
+            <div class="card task-card position-relative overflow-hidden">
+                <div class="card-glow"></div>
 
-                    <div id="card">
-                        <div class="card-content">
-                            <div class="card-glare"></div>
-                            <div class="cyber-lines">
-                                <span></span><span></span><span></span><span></span>
-                            </div>
+                <div class="card-body">
+                    <h5 class="card-title">@task.Name</h5>
+                    <p class="card-category">
+                        <span class="badge bg-gradient-purple">@task.taskCategory?.Name</span>
+                    </p>
+                    <p class="card-deadline">Deadline: @task.Deadline.ToString("dd/MM/yyyy")</p>
 
-                            <div class="title">@task.Name</div>
-                            <div class="subtitle">
-                                <span>Deadline: @task.Deadline.ToString("dd/MM/yyyy")</span><br />
-                                <span class="highlight">@task.taskCategory?.Name</span>
-                            </div>
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-gradient-primary">
+                            <i class="bi bi-eye-fill"></i> View
+                        </a>
+                        <a asp-action="Update" asp-route-id="@task.Id" class="btn btn-gradient-warning">
+                            <i class="bi bi-pencil-fill"></i> Edit
+                        </a>
+                        <form asp-action="DeleteConfirmed" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@task.Id" />
+                            <button type="submit" class="btn btn-gradient-danger">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </button>
+                        </form>
+                    </div>
 
-                            <div class="glowing-elements">
-                                <div class="glow-1"></div>
-                                <div class="glow-2"></div>
-                                <div class="glow-3"></div>
-                            </div>
-
-                            <div class="card-actions d-flex justify-content-center mt-3 gap-2">
-                                <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-primary" title="View">
-                                    <i class="bi bi-eye-fill"></i>
-                                </a>
-                                <a asp-action="Update" asp-route-id="@task.Id" class="btn btn-sm btn-gradient-warning" title="Edit">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </a>
-
-                                <button type="button" class="btn btn-sm btn-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@task.Id" title="Delete">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-
-                                <div class="modal fade" id="deleteModal-@task.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@task.Id" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Confirm Delete</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete <strong>@task.Name</strong>?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-gradient-danger" asp-action="Delete" asp-route-id="@task.Id">Yes, Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-particles">
-                                <span></span><span></span><span></span>
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="corner-elements">
-                                <span></span><span></span><span></span><span></span>
-                            </div>
-                            <div class="scan-line"></div>
-                        </div>
+                    <div class="particles">
+                        <span></span><span></span><span></span><span></span><span></span>
                     </div>
                 </div>
             </div>

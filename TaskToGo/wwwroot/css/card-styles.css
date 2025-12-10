@@ -1,0 +1,119 @@
+﻿/* بطاقة المهام */
+.task-card {
+    background: #1b0a2a;
+    color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+    .task-card:hover {
+        transform: translateY(-5px);
+    }
+
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #8e2de2, #4a00e0, #d16ba5);
+    animation: rotate 6s linear infinite;
+    opacity: 0.25;
+    z-index: 0;
+    border-radius: 50%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.task-card .card-body {
+    position: relative;
+    z-index: 2;
+}
+
+/* الجسيمات */
+.particles span {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #d16ba5;
+    border-radius: 50%;
+    animation: particleMove 3s linear infinite;
+    opacity: 0.6;
+}
+
+    .particles span:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .particles span:nth-child(2) {
+        top: 40%;
+        left: 80%;
+        animation-delay: 1s;
+    }
+
+    .particles span:nth-child(3) {
+        top: 70%;
+        left: 30%;
+        animation-delay: 2s;
+    }
+
+    .particles span:nth-child(4) {
+        top: 10%;
+        left: 50%;
+        animation-delay: 1.5s;
+    }
+
+    .particles span:nth-child(5) {
+        top: 60%;
+        left: 60%;
+        animation-delay: 0.5s;
+    }
+
+@keyframes particleMove {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.2);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* أزرار Gradient أرجواني */
+.btn-gradient-primary {
+    background: linear-gradient(90deg,#8e2de2,#4a00e0);
+    color: white;
+}
+
+.btn-gradient-warning {
+    background: linear-gradient(90deg,#9d50bb,#6e48aa);
+    color: white;
+}
+
+.btn-gradient-danger {
+    background: linear-gradient(90deg,#d16ba5,#c777b9);
+    color: white;
+}
+
+/* شريط الفئة */
+.bg-gradient-purple {
+    background: linear-gradient(90deg,#8e2de2,#4a00e0);
+    color: white;
+}
