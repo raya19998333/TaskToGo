@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -82,5 +82,12 @@ namespace TaskToGo.Controllers
 
             return View(obj);
         }
+        public IActionResult ViewTasks()
+        {
+            // جلب جميع المهام مع الفئة المرتبطة بها
+            var tasks = _db.todoTasks.Include(t => t.taskCategory).ToList();
+            return View(tasks);
+        }
+
     }
 }

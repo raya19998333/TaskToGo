@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TaskToGo.Models.TodoTask>
+
+<h2 class="mb-4">All Tasks</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            int i = 1;
+            foreach (var task in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@task.Name</td>
+                    <td>@task.Description</td>
+                    <td>@task.Deadline.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@task.taskCategory?.Name</td>
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No tasks found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
