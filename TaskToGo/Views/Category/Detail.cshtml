@@ -1,15 +1,18 @@
-﻿@model TaskCategory
+﻿@model TaskToGo.Models.TaskCategory
+@{
+    ViewData["Title"] = "Category Details";
+    Layout = "_Layout";
+}
 
-@if(Model is not null)
-{
-<div class="container d-flex flex-column">
-    
-    <h3>@Model.Name</h3>
-    <p>@Model.CreatedAt</p>
-
+<div class="main-content">
+    <div class="section-header">
+        <h1>Category Details</h1>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+        <a asp-action="Update" asp-route-Id="@Model.Id" class="btn btn-primary">Edit</a>
     </div>
-}
-else
-{
-    <h3 class="alert alert-warning"> No Category Found</h3>
-}
+
+    <div class="tasks-container">
+        <h2>@Model.Name</h2>
+        <p>@Model.Description</p>
+    </div>
+</div>

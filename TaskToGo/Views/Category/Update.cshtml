@@ -1,14 +1,25 @@
-﻿@model TaskCategory
+﻿@model TaskToGo.Models.TaskCategory
+@{
+    ViewData["Title"] = "Update Category";
+    Layout = "_Layout";
+}
 
+<div class="main-content">
+    <div class="section-header">
+        <h1>Update Category</h1>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
 
-<div class="container">
-    <div asp-validation-summary="All"></div>
-    <h2>Create new Category </h2>
-    <form method="post" asp-controller="Category" asp-action="Update">
-        <label class="form-label" asp-for="@Model.Name"> Name</label> <br />
-        <input asp-for="@Model.Name" />
-        <span asp-validation-for="@Model.Name" class="text-danger   "></span><br />
-
-        <input type="submit" value="update Category" class="btn btn-primary" />
+    <form asp-action="Update" method="post" class="tasks-container">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
