@@ -1,44 +1,98 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "TaskToGo - Tasks Dashboard";
+    Layout = "_Layout";
 }
-@model List<TodoTask>
 
-@if (Model.Count > 0)
-{
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    Todo Name
-                </th>
-                <th>
-                    Deadline
-                </th>
-                <th>
-                    Category Name
-                </th>
+<link rel="stylesheet" href="~/css/app.css" />
 
-            </tr>
-        </thead>
-        <tbody>
+<div class="app-shell">
+    <header class="topbar">
+        <div class="brand">TaskToGo</div>
+        <div class="top-actions">
+            <input id="search" placeholder="Search for a task..." />
+            <button class="btn primary" id="add-task-btn">+ Add Task</button>
+        </div>
+    </header>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Deadline</td>
-                    <td>@item.taskCategory?.Name</td>
-                    <td><a class="btn btn-primary" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">ViewDetails</a> </td>
-                    <td><a class="btn btn-warning" asp-action="Update" asp-controller="Home" asp-route-id="@item.Id">update</a> </td>
-                    <td><a class="btn btn-danger" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">Delete</a> </td>
+    <main class="main-grid">
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h4>Filters</h4>
+                <label><input type="checkbox" checked /> All</label>
+                <label><input type="checkbox" /> Completed</label>
+                <label><input type="checkbox" /> In Progress</label>
+                <label><input type="checkbox" /> Delayed</label>
+            </div>
 
+            <div class="priority-section">
+                <h4>Priority</h4>
+                <button class="chip">High</button>
+                <button class="chip">Medium</button>
+                <button class="chip">Low</button>
+            </div>
 
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <h3 class="alert alert-warning">No Tasks Yet</h3>
+            <div class="legend">
+                <h5>Color Key</h5>
+                <div class="legend-item"><span class="dot high"></span>High</div>
+                <div class="legend-item"><span class="dot med"></span>Medium</div>
+                <div class="legend-item"><span class="dot low"></span>Low</div>
+            </div>
+        </aside>
+
+        <section class="content-area">
+            <div class="content-header">
+                <h2>Tasks</h2>
+                <div class="sort-controls">
+                    <label>
+                        Sort by:
+                        <select id="sort">
+                            <option>Date (Newest First)</option>
+                            <option>Priority</option>
+                            <option>Status</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="cards-grid" id="tasks-list">
+
+                <!-- Task Card Example -->
+                <article class="task-card">
+                    <div class="task-heading">
+                        <h3 class="task-title">Prepare Project Presentation</h3>
+                        <span class="badge status in-progress">In Progress</span>
+                    </div>
+
+                    <p class="task-desc">
+                        Finalize slides and presentation content before the deadline.
+                    </p>
+
+                    <div class="task-meta">
+                        <div>Due Date: <strong>2025-12-20</strong></div>
+                        <div class="priority"><span class="dot high"></span>High</div>
+                    </div>
+
+                    <div class="task-actions">
+                        <button class="btn ghost">Edit</button>
+                        <button class="btn danger">Delete</button>
+                        <button class="btn success">Done</button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        // basic interaction logic (expandable)
+        document.getElementById('add-task-btn')?.addEventListener('click', () => {
+            alert('Open the Create Task modal (to be implemented)');
+        });
+
+        // For dynamic tasks later:
+        // const tasks = [...];
+        // renderTasks(tasks);
+    </script>
 }

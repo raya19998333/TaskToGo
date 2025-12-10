@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TaskToGo</title>
     <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/app.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/js/custom.js"></script>
+
 </head>
 <body>
     <div class="sidebar" id="sidebar">
@@ -27,5 +31,7 @@
             @RenderBody()
         </div>
     </div>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

@@ -1,0 +1,247 @@
+﻿:root {
+    --bg: #f7f9fb;
+    --card: #ffffff;
+    --text: #263238;
+    --muted: #6b7280;
+    --accent: #2563eb; /* أزرق لطيف */
+    --success: #16a34a;
+    --danger: #ef4444;
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: Inter, "Segoe UI", Tahoma, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    background: linear-gradient(90deg,#ffffff 0%, #f3f6fb 100%);
+    box-shadow: 0 1px 6px rgba(16,24,40,0.04);
+    border-bottom: 1px solid rgba(0,0,0,0.03)
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--accent)
+}
+
+.top-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+    .top-actions input {
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: 1px solid #e6eef8;
+        min-width: 220px
+    }
+
+.btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600
+}
+
+    .btn.primary {
+        background: var(--accent);
+        color: white
+    }
+
+    .btn.ghost {
+        background: transparent;
+        border: 1px solid #e6eef8
+    }
+
+    .btn.danger {
+        background: var(--danger);
+        color: white
+    }
+
+    .btn.success {
+        background: var(--success);
+        color: white
+    }
+
+/* Grid layout */
+.main-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    width: calc(100% - 40px)
+}
+
+.sidebar {
+    background: transparent;
+    padding: 12px;
+    border-radius: var(--radius)
+}
+
+.filter-section h4, .priority-section h4 {
+    margin: 0 0 8px 0;
+    color: var(--muted)
+}
+
+.chip {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #e6eef8;
+    background: white;
+    margin-right: 6px;
+    cursor: pointer
+}
+
+/* content */
+.content-area {
+    padding: 8px
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px
+}
+
+/* 카드 المهمة */
+.task-card {
+    background: var(--card);
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+    border: 1px solid rgba(0,0,0,0.03)
+}
+
+.task-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.task-title {
+    margin: 0;
+    font-size: 16px
+}
+
+.task-desc {
+    margin: 8px 0 12px;
+    color: var(--muted);
+    font-size: 14px
+}
+
+.task-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted)
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    justify-content: flex-end
+}
+
+/* status badges */
+.badge {
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 12px
+}
+
+    .badge.in-progress {
+        background: #fff4e6;
+        color: #b45309;
+        border: 1px solid rgba(180,83,9,0.08)
+    }
+
+    .badge.completed {
+        background: #ecfdf5;
+        color: #065f46;
+        border: 1px solid rgba(6,95,70,0.06)
+    }
+
+/* dots priority */
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle
+}
+
+    .dot.high {
+        background: #ef4444
+    }
+
+    .dot.med {
+        background: #f59e0b
+    }
+
+    .dot.low {
+        background: #10b981
+    }
+
+/* legend */
+.legend {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--muted)
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-top: 6px
+}
+
+/* responsive */
+@media (max-width:900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        padding: 12px
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr
+    }
+
+    .top-actions input {
+        min-width: 120px
+    }
+}
