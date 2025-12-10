@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TaskToGo.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration1 : Migration
+    public partial class initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,8 @@ namespace TaskToGo.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 10, 22, 1, 231, DateTimeKind.Utc).AddTicks(6008))
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 16, 38, 22, 177, DateTimeKind.Utc).AddTicks(2560))
                 },
                 constraints: table =>
                 {
@@ -35,7 +36,7 @@ namespace TaskToGo.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsCompeleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
                     Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 10, 22, 1, 231, DateTimeKind.Utc).AddTicks(8190)),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 16, 38, 22, 177, DateTimeKind.Utc).AddTicks(6794)),
                     TaskCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
