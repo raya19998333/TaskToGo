@@ -33,11 +33,7 @@ namespace TaskToGo.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 12, 10, 16, 38, 22, 177, DateTimeKind.Utc).AddTicks(2560));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasDefaultValue(new DateTime(2025, 12, 10, 17, 9, 55, 102, DateTimeKind.Utc).AddTicks(9101));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -60,7 +56,7 @@ namespace TaskToGo.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 12, 10, 16, 38, 22, 177, DateTimeKind.Utc).AddTicks(6794));
+                        .HasDefaultValue(new DateTime(2025, 12, 10, 17, 9, 55, 103, DateTimeKind.Utc).AddTicks(2087));
 
                     b.Property<DateTime>("Deadline")
                         .HasColumnType("datetime2");

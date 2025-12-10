@@ -28,6 +28,7 @@
             <label asp-for="TaskCategoryId" class="form-label">Category</label>
             <select asp-for="TaskCategoryId" asp-items="ViewBag.CategoriesList" class="form-select">
                 <option value="">Choose option</option>
+                <option value="Intersting">Intersting</option>
             </select>
             <span asp-validation-for="TaskCategoryId" class="text-danger"></span>
         </div>

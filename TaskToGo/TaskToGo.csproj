@@ -9,12 +9,20 @@
   <ItemGroup>
     <Compile Remove="Views\NewFolder1\**" />
     <Compile Remove="Views\NewFolder2\**" />
+    <Compile Remove="Views\TaskCategories\**" />
+    <Compile Remove="Views\Task\**" />
     <Content Remove="Views\NewFolder1\**" />
     <Content Remove="Views\NewFolder2\**" />
+    <Content Remove="Views\TaskCategories\**" />
+    <Content Remove="Views\Task\**" />
     <EmbeddedResource Remove="Views\NewFolder1\**" />
     <EmbeddedResource Remove="Views\NewFolder2\**" />
+    <EmbeddedResource Remove="Views\TaskCategories\**" />
+    <EmbeddedResource Remove="Views\Task\**" />
     <None Remove="Views\NewFolder1\**" />
     <None Remove="Views\NewFolder2\**" />
+    <None Remove="Views\TaskCategories\**" />
+    <None Remove="Views\Task\**" />
   </ItemGroup>
 
   <ItemGroup>

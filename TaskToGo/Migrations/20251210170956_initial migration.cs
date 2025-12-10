@@ -18,8 +18,7 @@ namespace TaskToGo.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 16, 38, 22, 177, DateTimeKind.Utc).AddTicks(2560))
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 17, 9, 55, 102, DateTimeKind.Utc).AddTicks(9101))
                 },
                 constraints: table =>
                 {
@@ -36,7 +35,7 @@ namespace TaskToGo.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsCompeleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
                     Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 16, 38, 22, 177, DateTimeKind.Utc).AddTicks(6794)),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 12, 10, 17, 9, 55, 103, DateTimeKind.Utc).AddTicks(2087)),
                     TaskCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
