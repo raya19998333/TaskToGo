@@ -14,6 +14,6 @@ namespace TaskToGo.Models
         [ForeignKey(nameof(taskCategory))]
         public int TaskCategoryId { get; set; }
 
-        public TaskCategory taskCategory { get; set; }
+        public TaskCategory? taskCategory { get; set; }
     }
 }

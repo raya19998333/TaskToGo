@@ -1,40 +1,44 @@
 ﻿@{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Home Page";
 }
+@model List<TodoTask>
 
-<div class="dashboard">
-    <div class="card">
-        <h3>Total Tasks</h3>
-        <p>@ViewData["TotalTasks"]</p>
-    </div>
+@if (Model.Count > 0)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Todo Name
+                </th>
+                <th>
+                    Deadline
+                </th>
+                <th>
+                    Category Name
+                </th>
 
-    <div class="card">
-        <h3>Pending Tasks</h3>
-        <p>@ViewData["PendingTasks"]</p>
-    </div>
+            </tr>
+        </thead>
+        <tbody>
 
-    <div class="card">
-        <h3>Total Categories</h3>
-        <p>@ViewData["TotalCategories"]</p>
-    </div>
-</div>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Deadline</td>
+                    <td>@item.taskCategory?.Name</td>
+                    <td><a class="btn btn-primary" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">ViewDetails</a> </td>
+                    <td><a class="btn btn-warning" asp-action="Update" asp-controller="Home" asp-route-id="@item.Id">update</a> </td>
+                    <td><a class="btn btn-danger" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">Delete</a> </td>
 
-<style>
-    .dashboard {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-    .card {
-        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-        color: white;
-        padding: 20px;
-        border-radius: 12px;
-        flex: 1;
-        min-width: 200px;
-        transition: transform 0.3s ease;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-    }
-</style>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3 class="alert alert-warning">No Tasks Yet</h3>
+}
